@@ -83,11 +83,11 @@ public class Boek {
 		
 		voegKaartToe(5, KaartType.BRUINE_RIJ_KAART);
 		
-		// 5 summary kaarten
+		// -- 5 summary kaarten
 		
 		voegKaartToe(5, KaartType.SUMMARY_KAART);
 		
-		// 3 groene kaarten
+		// -- 3 groene kaarten
 		
 		voegKaartToe(3, KaartType.GROENE_RIJ_KAART);
 		

@@ -1,5 +1,7 @@
 package mario.coloretto.model;
 
+import java.util.List;
+
 /**
  *
  * @author mario.vansteenberghe@gmail.com
@@ -11,6 +13,9 @@ public class Speler {
 
 	/** naam */
 	private String naam;
+	
+	/** kaarten */
+	private List<Kaart> kaarten;
 	
 	/**
 	 * Constructor
@@ -46,5 +51,23 @@ public class Speler {
 	
 	public String getNaam() {
 		return naam;
+	}
+	
+	/**
+	 * Kaart toevoegen
+	 * @param kaart kaart
+	 */
+	
+	public void addKaart(final Kaart kaart) {
+		this.kaarten.add(kaart);
+	}
+	
+	/**
+	 * Returns kaarten
+	 * @return kaarten
+	 */
+	
+	public List<Kaart> getKaarten() {
+		return kaarten;
 	}
 }

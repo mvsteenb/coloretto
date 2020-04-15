@@ -29,7 +29,6 @@ public class Spel {
 	
 	/**
 	 * Constructor
-	 * @param aantalSpelers aantal spelers
 	 */
 	
 	public Spel() {
@@ -71,9 +70,21 @@ public class Spel {
 	
 	public void start() {
 		initialiseerSpel();
+		verdeelKaarten();
 	}
 	
 	// ------------------------------ public methods ------------------------------------ //
+	
+	/**
+	 * Verdeel kaarten aan spelers
+	 */
+	
+	private void verdeelKaarten() {
+		
+		//
+		// elke speler krijgt een summary kaart
+		
+	}
 	
 	/**
 	 * Initialiseer spel
