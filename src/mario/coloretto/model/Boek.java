@@ -13,19 +13,33 @@ import java.util.List;
 public class Boek {
 
 	/** kaarten */
-	private List<Kaart> kaarten = new ArrayList<>(); 
+	private final List<Kaart> kaarten = new ArrayList<>(); 
 	
 	/**
 	 * Constructor
 	 */
 	
-	public Boek(final int aantalSpelers) {
-		initialize(aantalSpelers);
+	public Boek() {
+		initialize();
 	}
 	
 	// ------------------------------ public methods ------------------------------------ //
-
 	
+	/**
+	 * Verwijder kaarten van het gegeven type uit het boek
+	 * @param type type
+	 */
+	
+	public void verwijderKaartenVanType(final KaartType type) {
+		final List<Kaart> nieuweBoek = new ArrayList<>();
+		for (Kaart kaart : kaarten) {
+			if (kaart.getType() != type) {
+				nieuweBoek.add(kaart);
+			}
+		}
+		this.kaarten.clear();
+		this.kaarten.addAll(nieuweBoek);
+	}
 	
 	// ------------------------------ private methods ------------------------------------ //
 	
@@ -33,7 +47,7 @@ public class Boek {
 	 * Initializes cards
 	 */
 	
-	private void initialize(final int aantalSpelers) {
+	private void initialize() {
 
 		//
 		// verwijder alle kaarten
@@ -76,11 +90,6 @@ public class Boek {
 		// 3 groene kaarten
 		
 		voegKaartToe(3, KaartType.GROENE_RIJ_KAART);
-		
-		//
-		// pas kaartenboek aan voor het aantal spelers
-		
-		
 		
 	}
 	
