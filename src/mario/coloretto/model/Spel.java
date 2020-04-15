@@ -1,6 +1,18 @@
 package mario.coloretto.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
+ * Hoe gebruiken : 
+ * 
+ * <pre>
+ *   Spel spel = new Spel();
+ *   spel.addSpeler(new Speler("Mario");
+ *   spel.addSpeler(new Speler("Phoebe");
+ *   spel.addSpeler(new Speler("Manos");
+ *   spel.start();
+ * </pre>
  *
  * @author mario.vansteenberghe@gmail.com
  * 15 apr. 2020
@@ -9,36 +21,68 @@ package mario.coloretto.model;
 
 public class Spel {
 
+	/** boek */
 	private Boek boek;
-	private int aantalSpelers;
+	
+	/** spelers */
+	private List<Speler> spelers = new ArrayList<>();
 	
 	/**
 	 * Constructor
 	 * @param aantalSpelers aantal spelers
 	 */
 	
-	public Spel(final int aantalSpelers) {
-		this.aantalSpelers = aantalSpelers;
-		
-		//
-		// initialiseer nieuw kaartenboek
-		
-		this.boek = new Boek();
-		
-		//
-		// configureer spel
-		
-		configureerSpel();
-		
+	public Spel() {
+		reset();
 	}
 	
-	// ------------------------------ private methods ------------------------------------ //
+	// ------------------------------ public methods ------------------------------------ //
+
+	/**
+	 * Reset spel
+	 */
+	
+	public void reset() {
+		this.boek = new Boek();
+		this.spelers.clear();
+	}
 	
 	/**
-	 * Configureer spel
+	 * Returns aantal spelers
+	 * @return aantal spelers
+	 */
+	
+	public int getAantalSpelers() {
+		return this.spelers.size();
+	}
+	
+	/**
+	 * Voegt speler toe
+	 * @param speler
+	 */
+	
+	public void addSpeler(final Speler speler) {
+		this.spelers.add(speler);
+	}
+	
+	/**
+	 * Start spel
+	 */
+	
+	public void start() {
+		initialiseerSpel();
+	}
+	
+	// ------------------------------ public methods ------------------------------------ //
+	
+	/**
+	 * Initialiseer spel
 	 */
 
-	private void configureerSpel() {
+	private void initialiseerSpel() {
+		
+		final int aantalSpelers = getAantalSpelers();
+		
 		if (aantalSpelers == 2) {
 			
 			//
