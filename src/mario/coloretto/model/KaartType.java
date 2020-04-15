@@ -9,6 +9,8 @@ package mario.coloretto.model;
 
 public enum KaartType {
 
+	/* kleurenkaarten */
+	
 	KLEUR_ORANJE,
 	KLEUR_BLAUW,
 	KLEUR_DONKER_BRUIN,
@@ -16,11 +18,17 @@ public enum KaartType {
 	KLEUR_GRIJS,
 	KLEUR_GROEN,
 	KLEUR_ROZE,
+	
+	/* rij kaarten */
+	
+	BRUINE_RIJ_KAART,
+	GROENE_RIJ_KAART,
+
+	/* andere kaarten */
+	
 	PLUS_2_KAART,
 	JOKER,
 	LAATSTE_RONDE,
-	BRUINE_KAART,
-	GROENE_KAART,
 	SUMMARY_KAART;
 	
 }

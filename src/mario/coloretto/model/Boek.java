@@ -40,7 +40,10 @@ public class Boek {
 		
 		this.kaarten.clear();
 		
-		// 9 kleurenkaarten van elke kleur
+		//
+		// voeg kaarten toe aan het boek
+		
+		// -- 9 kleurenkaarten van elke kleur
 		
 		voegKaartToe(9, KaartType.KLEUR_ORANJE);
 		voegKaartToe(9, KaartType.KLEUR_BLAUW);
@@ -50,29 +53,35 @@ public class Boek {
 		voegKaartToe(9, KaartType.KLEUR_GROEN);
 		voegKaartToe(9, KaartType.KLEUR_ROZE);
 		
-		// 2 +2 kaarten
+		// -- 2 +2 kaarten
 		
 		voegKaartToe(2, KaartType.PLUS_2_KAART);
 		
-		// 3 jokers
+		// -- 3 jokers
 		
 		voegKaartToe(3, KaartType.JOKER);
 		
-		// 1 laatste ronde kaart
+		// -- 1 laatste ronde kaart
 		
 		voegKaartToe(1, KaartType.LAATSTE_RONDE);
 		
-		// 5 bruine kaarten
+		// -- 5 bruine kaarten
 		
-		voegKaartToe(1, KaartType.BRUINE_KAART);
+		voegKaartToe(5, KaartType.BRUINE_RIJ_KAART);
 		
 		// 5 summary kaarten
 		
-		voegKaartToe(1, KaartType.SUMMARY_KAART);
+		voegKaartToe(5, KaartType.SUMMARY_KAART);
 		
 		// 3 groene kaarten
 		
-		voegKaartToe(1, KaartType.GROENE_KAART);
+		voegKaartToe(3, KaartType.GROENE_RIJ_KAART);
+		
+		//
+		// pas kaartenboek aan voor het aantal spelers
+		
+		
+		
 	}
 	
 	/**
