@@ -1,6 +1,6 @@
-package main;
+package manos.main;
 
-import ui.SpelApplicatie;
+import manos.ui.SpelApplicatie;
 
 public class startUp {
 

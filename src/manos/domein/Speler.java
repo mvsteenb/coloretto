@@ -1,4 +1,4 @@
-package Domein;
+package manos.domein;
 
 public class Speler {
 	private int score;

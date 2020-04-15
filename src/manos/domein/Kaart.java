@@ -1,4 +1,4 @@
-package Domein;
+package manos.domein;
 
 import java.util.ArrayList;
 

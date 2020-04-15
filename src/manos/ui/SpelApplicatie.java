@@ -1,5 +1,5 @@
-package ui;
-import Domein.Spel;
+package manos.ui;
+import manos.domein.Spel;
 
 public class SpelApplicatie {
 	
