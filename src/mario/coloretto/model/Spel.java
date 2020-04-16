@@ -1,6 +1,7 @@
 package mario.coloretto.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -25,7 +26,13 @@ public class Spel {
 	private Boek boek;
 	
 	/** spelers */
-	private List<Speler> spelers = new ArrayList<>();
+	private final List<Speler> spelers = new ArrayList<>();
+	
+	/** rijen */
+	private final List<Rij> rijen = new ArrayList<>();
+	
+	/** laatste-ronde kaart */
+	private Kaart laatsteRondeKaart;
 	
 	/**
 	 * Constructor
@@ -69,8 +76,16 @@ public class Spel {
 	 */
 	
 	public void start() {
-		initialiseerSpel();
+		
+		//
+		// verdeel de kaarten
+		
 		verdeelKaarten();
+		
+		//
+		// shud kaarten in het kaartenboek
+		
+		boek.shudKaarten();
 	}
 	
 	// ------------------------------ public methods ------------------------------------ //
@@ -80,28 +95,77 @@ public class Spel {
 	 */
 	
 	private void verdeelKaarten() {
-		
-		//
-		// elke speler krijgt een summary kaart
-		
-	}
 	
-	/**
-	 * Initialiseer spel
-	 */
-
-	private void initialiseerSpel() {
-		
-		final int aantalSpelers = getAantalSpelers();
+		int aantalSpelers = getAantalSpelers();
+		List<KaartType> beschikbareKleuren = Arrays.asList(KaartType.KLEUR_KAARTEN);
 		
 		if (aantalSpelers == 2) {
 			
 			//
-			// voor 2 spelers : verwijder 2 kleurenbundles
+			// voor 2 spelers : verwijder 2 kleurenbundles 
 			
-			boek.verwijderKaartenVanType(KaartType.KLEUR_ROZE);
-			boek.verwijderKaartenVanType(KaartType.KLEUR_DONKER_BRUIN);
-		}		
+			boek.verwijderAlleKaartenVanType(KaartType.KLEUR_ROZE);
+			boek.verwijderAlleKaartenVanType(KaartType.KLEUR_DONKER_BRUIN);
+		
+			beschikbareKleuren.remove(KaartType.KLEUR_ROZE);
+			beschikbareKleuren.remove(KaartType.KLEUR_DONKER_BRUIN);
+			
+			// 
+			// gebruik de groene rijkaarten (1,2,3)
+			
+			rijen.add(new Rij(1));
+			rijen.add(new Rij(2));
+			rijen.add(new Rij(3));
+			
+		}
+		else {
+
+			//
+			// With 3 players, remove the cards of one color from the game.
+			
+			if (aantalSpelers == 3) {
+				boek.verwijderAlleKaartenVanType(KaartType.KLEUR_ROZE);
+				beschikbareKleuren.remove(KaartType.KLEUR_ROZE);
+			}
+			
+			//
+			// maak rijkaarten aan (1 per speler) -- bruine rijkaarten (altijd 3)
+			
+			for (int i = 0; i < aantalSpelers; i++) {
+				rijen.add(new Rij(3));
+			}
+			
+			
+		}
+
+		//
+		// elke speler krijgt een summary kaart
+		
+		spelers.forEach(speler -> { speler.addKaart(new Kaart(KaartType.SUMMARY_KAART)); });
+		
+		//
+		// Remove the ‘last round’ card from the deck and set it aside for now
+		
+		laatsteRondeKaart = boek.neemKaartVanType(KaartType.LAATSTE_RONDE);
+
+		//
+		// Elke speler krijgt een kaart van een verschillende kleur
+
+		spelers.forEach(speler -> {
+			
+			// neem een kleur uit de nog beschikbare kleuren en verwijder deze kleur
+			
+			KaartType kleur = beschikbareKleuren.get(0);
+			beschikbareKleuren.remove(kleur);
+			
+			//
+			// neem een kaart van deze kleur uit het boek en geef aan speler
+			
+			Kaart kaart = boek.neemKaartVanType(kleur);
+			speler.addKaart(kaart);
+			
+		});
 	}
+	
 	
 }

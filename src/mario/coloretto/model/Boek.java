@@ -1,6 +1,7 @@
 package mario.coloretto.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -30,15 +31,73 @@ public class Boek {
 	 * @param type type
 	 */
 	
-	public void verwijderKaartenVanType(final KaartType type) {
+	public void verwijderAlleKaartenVanType(final KaartType type) {
+		
+		//
+		// doorzoek kaartenboek naar kaarten die niet gelijk zijn aan dit type
+		// en voeg ze toe aan een nieuwe stapel
+		
 		final List<Kaart> nieuweBoek = new ArrayList<>();
 		for (Kaart kaart : kaarten) {
 			if (kaart.getType() != type) {
 				nieuweBoek.add(kaart);
 			}
 		}
+		
+		//
+		// verwijder alle kaarten uit het boek
+		// en voeg de nieuwe stapel toe aan het boek
+		
 		this.kaarten.clear();
 		this.kaarten.addAll(nieuweBoek);
+	}
+	
+	/**
+	 * Neemt een kaart uit het boek van gegeven type
+	 * @param type type
+	 * @return kaart
+	 */
+	
+	public Kaart neemKaartVanType(final KaartType type) {
+		Kaart kaart = null;
+		
+		//
+		// zoek kaart van gegeven type in de stapel
+		
+		for (Kaart k : kaarten) {
+			if (k.getType() == type) {
+				kaart = k;
+				break;
+			}
+		}
+		
+		//
+		// indien kaart gevonden, verwijder van boek
+		
+		if (kaart != null) {
+			kaarten.remove(kaart);
+		}
+		
+		return kaart;
+	}
+	
+	/**
+	 * Neem de volgende kaart van de stapel
+	 * @return volgende kaart
+	 */
+	
+	public Kaart neemVolgendeKaartVanStapel() {
+		Kaart res = kaarten.get(kaarten.size()-1);
+		kaarten.remove(res);
+		return res;
+	}
+	
+	/**
+	 * Doorschud de kaarten
+	 */
+	
+	public void shudKaarten() {
+		Collections.shuffle(kaarten);
 	}
 	
 	// ------------------------------ private methods ------------------------------------ //
@@ -69,7 +128,7 @@ public class Boek {
 		
 		// -- 2 +2 kaarten
 		
-		voegKaartToe(2, KaartType.PLUS_2_KAART);
+		voegKaartToe(10, KaartType.PLUS_2_KAART);
 		
 		// -- 3 jokers
 		
@@ -78,19 +137,6 @@ public class Boek {
 		// -- 1 laatste ronde kaart
 		
 		voegKaartToe(1, KaartType.LAATSTE_RONDE);
-		
-		// -- 5 bruine kaarten
-		
-		voegKaartToe(5, KaartType.BRUINE_RIJ_KAART);
-		
-		// -- 5 summary kaarten
-		
-		voegKaartToe(5, KaartType.SUMMARY_KAART);
-		
-		// -- 3 groene kaarten
-		
-		voegKaartToe(3, KaartType.GROENE_RIJ_KAART);
-		
 	}
 	
 	/**
