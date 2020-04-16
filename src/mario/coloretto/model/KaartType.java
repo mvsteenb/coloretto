@@ -11,22 +11,22 @@ public enum KaartType {
 
 	/* kleurenkaarten */
 	
-	KLEUR_ORANJE,
-	KLEUR_BLAUW,
-	KLEUR_DONKER_BRUIN,
-	KLEUR_GEEL,
-	KLEUR_GRIJS,
-	KLEUR_GROEN,
-	KLEUR_ROZE,
+	ORANJE,
+	BLAUW,
+	DONKER_BRUIN,
+	GEEL,
+	GRIJS,
+	GROEN,
+	ROZE,
 	
 	/* andere kaarten */
 	
-	PLUS_2_KAART,
+	PLUS_2,
 	JOKER,
 	LAATSTE_RONDE,
-	SUMMARY_KAART;
+	SUMMARY;
 	
 	/** kleurkaarten */
-	public static KaartType[] KLEUR_KAARTEN = new KaartType[] { KLEUR_ORANJE, KLEUR_BLAUW, KLEUR_DONKER_BRUIN, KLEUR_GEEL, KLEUR_GRIJS, KLEUR_GROEN, KLEUR_ROZE };
+	public static KaartType[] KLEUR_KAARTEN = new KaartType[] { ORANJE, BLAUW, DONKER_BRUIN, GEEL, GRIJS, GROEN, ROZE };
 	
 }

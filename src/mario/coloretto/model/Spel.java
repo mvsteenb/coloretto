@@ -132,11 +132,11 @@ public class Spel {
 			//
 			// voor 2 spelers : verwijder 2 kleurenbundles 
 			
-			boek.verwijderAlleKaartenVanType(KaartType.KLEUR_ROZE);
-			boek.verwijderAlleKaartenVanType(KaartType.KLEUR_DONKER_BRUIN);
+			boek.verwijderAlleKaartenVanType(KaartType.ROZE);
+			boek.verwijderAlleKaartenVanType(KaartType.DONKER_BRUIN);
 		
-			beschikbareKleuren.remove(KaartType.KLEUR_ROZE);
-			beschikbareKleuren.remove(KaartType.KLEUR_DONKER_BRUIN);
+			beschikbareKleuren.remove(KaartType.ROZE);
+			beschikbareKleuren.remove(KaartType.DONKER_BRUIN);
 			
 			// 
 			// gebruik de groene rijkaarten (1,2,3)
@@ -152,8 +152,8 @@ public class Spel {
 			// With 3 players, remove the cards of one color from the game.
 			
 			if (aantalSpelers == 3) {
-				boek.verwijderAlleKaartenVanType(KaartType.KLEUR_ROZE);
-				beschikbareKleuren.remove(KaartType.KLEUR_ROZE);
+				boek.verwijderAlleKaartenVanType(KaartType.ROZE);
+				beschikbareKleuren.remove(KaartType.ROZE);
 			}
 			
 			//
@@ -167,7 +167,7 @@ public class Spel {
 		//
 		// elke speler krijgt een summary kaart
 		
-		spelers.forEach(speler -> { speler.addKaart(new Kaart(KaartType.SUMMARY_KAART)); });
+		spelers.forEach(speler -> { speler.addKaart(new Kaart(KaartType.SUMMARY)); });
 		
 		//
 		// Remove the ‘last round’ card from the deck and set it aside for now

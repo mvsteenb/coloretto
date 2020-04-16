@@ -120,17 +120,17 @@ public class Boek {
 		
 		// -- 9 kleurenkaarten van elke kleur
 		
-		voegKaartToe(9, KaartType.KLEUR_ORANJE);
-		voegKaartToe(9, KaartType.KLEUR_BLAUW);
-		voegKaartToe(9, KaartType.KLEUR_DONKER_BRUIN);
-		voegKaartToe(9, KaartType.KLEUR_GEEL);
-		voegKaartToe(9, KaartType.KLEUR_GRIJS);
-		voegKaartToe(9, KaartType.KLEUR_GROEN);
-		voegKaartToe(9, KaartType.KLEUR_ROZE);
+		voegKaartToe(9, KaartType.ORANJE);
+		voegKaartToe(9, KaartType.BLAUW);
+		voegKaartToe(9, KaartType.DONKER_BRUIN);
+		voegKaartToe(9, KaartType.GEEL);
+		voegKaartToe(9, KaartType.GRIJS);
+		voegKaartToe(9, KaartType.GROEN);
+		voegKaartToe(9, KaartType.ROZE);
 		
 		// -- 2 +2 kaarten
 		
-		voegKaartToe(10, KaartType.PLUS_2_KAART);
+		voegKaartToe(10, KaartType.PLUS_2);
 		
 		// -- 3 jokers
 		
