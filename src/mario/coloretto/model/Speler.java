@@ -1,5 +1,6 @@
 package mario.coloretto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ public class Speler {
 	private String naam;
 	
 	/** kaarten */
-	private List<Kaart> kaarten;
+	private final List<Kaart> kaarten = new ArrayList<>();
 	
 	/**
 	 * Constructor

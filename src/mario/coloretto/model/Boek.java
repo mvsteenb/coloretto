@@ -97,7 +97,9 @@ public class Boek {
 	 */
 	
 	public void shudKaarten() {
+		System.out.println("Kaarten shudden...");
 		Collections.shuffle(kaarten);
+		System.out.println("Kaarten geschud !");
 	}
 	
 	// ------------------------------ private methods ------------------------------------ //

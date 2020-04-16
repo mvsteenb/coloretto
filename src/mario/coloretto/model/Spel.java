@@ -49,6 +49,9 @@ public class Spel {
 	 */
 	
 	public void reset() {
+		
+		System.out.println("Spel klaar zetten...");
+		
 		this.boek = new Boek();
 		this.spelers.clear();
 	}
@@ -69,6 +72,7 @@ public class Spel {
 	
 	public void addSpeler(final Speler speler) {
 		this.spelers.add(speler);
+		System.out.println("Speler toegevoegd : " + speler.getNaam());
 	}
 	
 	/**
@@ -76,6 +80,8 @@ public class Spel {
 	 */
 	
 	public void start() {
+		
+		System.out.println("Spel starten...");
 		
 		//
 		// verdeel de kaarten
@@ -86,6 +92,8 @@ public class Spel {
 		// shud kaarten in het kaartenboek
 		
 		boek.shudKaarten();
+		
+		System.out.println("GAME ON !");
 	}
 	
 	// ------------------------------ public methods ------------------------------------ //
@@ -95,9 +103,10 @@ public class Spel {
 	 */
 	
 	private void verdeelKaarten() {
-	
+		System.out.println("Kaarten verdelen...");
+		
 		int aantalSpelers = getAantalSpelers();
-		List<KaartType> beschikbareKleuren = Arrays.asList(KaartType.KLEUR_KAARTEN);
+		List<KaartType> beschikbareKleuren = new ArrayList<>(Arrays.asList(KaartType.KLEUR_KAARTEN));
 		
 		if (aantalSpelers == 2) {
 			
@@ -134,8 +143,6 @@ public class Spel {
 			for (int i = 0; i < aantalSpelers; i++) {
 				rijen.add(new Rij(3));
 			}
-			
-			
 		}
 
 		//
@@ -151,7 +158,7 @@ public class Spel {
 		//
 		// Elke speler krijgt een kaart van een verschillende kleur
 
-		spelers.forEach(speler -> {
+		for (Speler speler : spelers) {
 			
 			// neem een kleur uit de nog beschikbare kleuren en verwijder deze kleur
 			
@@ -164,7 +171,9 @@ public class Spel {
 			Kaart kaart = boek.neemKaartVanType(kleur);
 			speler.addKaart(kaart);
 			
-		});
+		}
+		
+		System.out.println("Kaarten verdeeld !");
 	}
 	
 	
