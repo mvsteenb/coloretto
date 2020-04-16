@@ -42,6 +42,11 @@ public class Coloretto {
 		// start het spel
 		
 		spel.start();
+		
+		//
+		// toon kaarten
+		
+		spel.toonKaartenAlleSpelers();
 	}
 	
 	// ------------------------------ public main methods ------------------------------------ //

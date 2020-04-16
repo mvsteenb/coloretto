@@ -76,6 +76,25 @@ public class Spel {
 	}
 	
 	/**
+	 * Toont kaarten van speler
+	 * @param speler speler
+	 */
+	
+	public void toonKaarten(final Speler speler) {
+		System.out.println(speler);
+	}
+	
+	/**
+	 * Toont kaarten van alle spelers
+	 */
+	
+	public void toonKaartenAlleSpelers() {
+		System.out.println("******** KAARTEN ALLE SPELERS **********");
+		spelers.forEach(speler -> { toonKaarten(speler); });
+		System.out.println("*****************************************");
+	}
+	
+	/**
 	 * Start spel
 	 */
 	

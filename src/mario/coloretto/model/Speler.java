@@ -71,4 +71,9 @@ public class Speler {
 	public List<Kaart> getKaarten() {
 		return kaarten;
 	}
+	
+	@Override
+	public String toString() {
+		return getNaam() + " : " + getKaarten();
+	}
 }

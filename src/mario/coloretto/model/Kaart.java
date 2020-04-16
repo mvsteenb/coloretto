@@ -31,12 +31,26 @@ public class Kaart {
 		this.type = ptype;
 	}
 	
+	/**
+	 * Sets kaart type
+	 * @param type kaart type
+	 */
+	
 	public void setType(KaartType type) {
 		this.type = type;
 	}
+	
+	/**
+	 * Returns kaart type
+	 * @return kaart type
+	 */
 	
 	public KaartType getType() {
 		return type;
 	}
 	
+	@Override
+	public String toString() {
+		return type.name();
+	}
 }
