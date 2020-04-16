@@ -112,7 +112,7 @@ public class Spel {
 		
 		boek.shudKaarten();
 		
-		System.out.println("GAME ON !");
+		System.out.println("^^^ GAME ON ^^^");
 	}
 	
 	// ------------------------------ public methods ------------------------------------ //
