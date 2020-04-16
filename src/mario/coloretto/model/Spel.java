@@ -89,7 +89,7 @@ public class Spel {
 	 */
 	
 	public void toonKaartenAlleSpelers() {
-		System.out.println("******** KAARTEN ALLE SPELERS **********");
+		System.out.println("******** KAARTEN ALLE SPELERS ***********");
 		spelers.forEach(speler -> { toonKaarten(speler); });
 		System.out.println("*****************************************");
 	}
