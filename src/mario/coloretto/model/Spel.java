@@ -2,6 +2,7 @@ package mario.coloretto.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -34,11 +35,30 @@ public class Spel {
 	/** laatste-ronde kaart */
 	private Kaart laatsteRondeKaart;
 	
+	/** huidige beurt in het spel */
+	private int huidigeBeurt = 0;
+	
+	/** huidige ronde in het spel */
+	private int huidigeRonde = 0;
+	
+	/** huidige speler */
+	private Speler huidigeSpeler;
+	
+	/** <code>true</code> indien spel gestart */
+	private boolean gestart;
+	
+	/** <code>true</code> indien laatste ronde */
+	private boolean laatsteRonde;
+	
+	/** event handler */
+	private final ISpelEventHandler eventHandler;
+	
 	/**
 	 * Constructor
 	 */
 	
-	public Spel() {
+	public Spel(final ISpelEventHandler peventHandler) {
+		this.eventHandler = peventHandler;
 		reset();
 	}
 	
@@ -49,9 +69,7 @@ public class Spel {
 	 */
 	
 	public void reset() {
-		
-		System.out.println("Spel klaar zetten...");
-		
+		System.out.println("[SPEL] : Spel klaar zetten...");
 		this.boek = new Boek();
 		this.spelers.clear();
 	}
@@ -72,7 +90,7 @@ public class Spel {
 	
 	public void addSpeler(final Speler speler) {
 		this.spelers.add(speler);
-		System.out.println("Speler toegevoegd : " + speler.getNaam());
+		System.out.println("[SPEL] : Speler toegevoegd : " + speler.getNaam());
 	}
 	
 	/**
@@ -95,12 +113,39 @@ public class Spel {
 	}
 	
 	/**
+	 * Returns <code>true</code> indien spel gestart
+	 * @return <code>true</code> indien spel gestart
+	 */
+	
+	public boolean isGestart() {
+		return gestart;
+	}
+	
+	/**
+	 * Returns <code>true</code> indien laatste ronde
+	 * @return <code>true</code> indien laatste ronde
+	 */
+	
+	public boolean isLaatsteRonde() {
+		return laatsteRonde;
+	}
+	
+	/**
+	 * Returns huidige ronde
+	 * @return huidige ronde
+	 */
+	
+	public int getHuidigeRonde() {
+		return huidigeRonde;
+	}
+	
+	/**
 	 * Start spel
 	 */
 	
 	public void start() {
 		
-		System.out.println("Spel starten...");
+		System.out.println("[SPEL] : Spel starten...");
 		
 		//
 		// verdeel de kaarten
@@ -108,21 +153,90 @@ public class Spel {
 		verdeelKaarten();
 		
 		//
-		// shud kaarten in het kaartenboek
+		// schud kaarten in het kaartenboek
 		
 		boek.shudKaarten();
 		
-		System.out.println("^^^ GAME ON ^^^");
+		//
+		// Kies huidige speler
+		
+		Collections.shuffle(spelers);
+		this.huidigeBeurt = 0;
+		huidigeSpeler = spelers.get(huidigeBeurt);
+		
+		//
+		// Klaar om te starten
+		
+		gestart = true;
+		
+		System.out.println("[SPEL] : ^^^ GAME ON ^^^");
+		
 	}
 	
-	// ------------------------------ public methods ------------------------------------ //
+	/**
+	 * Stopt spel
+	 */
+	
+	public void stop() {
+		gestart = false;
+		
+		System.out.println("[SPEL] : ^^^ EIND SPEL ^^^");
+	}
+	
+	/**
+	 * Neem kaart van de stapel en plaats bij een rij kaart
+	 */
+	
+	public void neemKaartVanStapel() {
+		
+		// TODO : implement !
+		
+	}
+	
+	/**
+	 * Speel volgende beurt
+	 */
+	
+	public void volgendeBeurt() {
+		
+		if (!laatsteRonde) {
+			
+			System.out.println("[SPEL] : BEURT : " + huidigeBeurt + "/" + huidigeRonde);
+			
+			//
+			// speel beurt
+			
+			eventHandler.speelBeurt(this, huidigeSpeler);
+			
+			//
+			// zet volgende speler
+			
+			if (huidigeBeurt+1 < spelers.size()) {
+				huidigeBeurt++;
+			}
+			else {
+				System.out.println("[SPEL] : VOLGENDE RONDE : " + huidigeBeurt + "/" + huidigeRonde);
+				huidigeBeurt = 0;
+				huidigeRonde++;
+			}
+			
+			huidigeSpeler = spelers.get(huidigeBeurt);
+			
+		}
+		else {
+			gestart = false;
+		}
+		
+	}
+	
+	// ------------------------------ private methods ------------------------------------ //
 	
 	/**
 	 * Verdeel kaarten aan spelers
 	 */
 	
 	private void verdeelKaarten() {
-		System.out.println("Kaarten verdelen...");
+		System.out.println("[SPEL] : Kaarten verdelen...");
 		
 		int aantalSpelers = getAantalSpelers();
 		List<KaartType> beschikbareKleuren = new ArrayList<>(Arrays.asList(KaartType.KLEUR_KAARTEN));
@@ -192,7 +306,7 @@ public class Spel {
 			
 		}
 		
-		System.out.println("Kaarten verdeeld !");
+		System.out.println("[SPEL] : Kaarten verdeeld !");
 	}
 	
 	
