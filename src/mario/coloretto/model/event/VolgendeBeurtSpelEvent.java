@@ -25,6 +25,6 @@ public class VolgendeBeurtSpelEvent extends SpelEvent {
 
 	@Override
 	public CommandoType[] getAllowedCommands() {
-		return CommandoType.SPELBEURT_COMMANDOS;
+		return new CommandoType[] { CommandoType.NEEM_KAART, CommandoType.STOP_SPEL };
 	}
 }
