@@ -5,6 +5,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import mario.coloretto.model.event.ISpelEventListener;
+import mario.coloretto.model.event.SpelEvent;
+import mario.coloretto.model.event.VolgendeBeurtSpelEvent;
+
 /**
  * Hoe gebruiken : 
  * 
@@ -50,15 +54,14 @@ public class Spel {
 	/** <code>true</code> indien laatste ronde */
 	private boolean laatsteRonde;
 	
-	/** event handler */
-	private final ISpelEventHandler eventHandler;
+	/** event listeners */
+	private List<ISpelEventListener> spelEventListeners = new ArrayList<>();
 	
 	/**
 	 * Constructor
 	 */
 	
-	public Spel(final ISpelEventHandler peventHandler) {
-		this.eventHandler = peventHandler;
+	public Spel() {
 		reset();
 	}
 	
@@ -206,7 +209,7 @@ public class Spel {
 			//
 			// speel beurt
 			
-			eventHandler.speelBeurt(this, huidigeSpeler);
+			notifyEvent(new VolgendeBeurtSpelEvent(this, huidigeSpeler));
 			
 			//
 			// zet volgende speler
@@ -227,6 +230,15 @@ public class Spel {
 			gestart = false;
 		}
 		
+	}
+	
+	/**
+	 * Adds event listener
+	 * @param l event listener
+	 */
+	
+	public void addEventListener(final ISpelEventListener l) {
+		this.spelEventListeners.add(l);
 	}
 	
 	// ------------------------------ private methods ------------------------------------ //
@@ -309,5 +321,12 @@ public class Spel {
 		System.out.println("[SPEL] : Kaarten verdeeld !");
 	}
 	
+	/**
+	 * Notifies event listeners of event
+	 * @param e event
+	 */
 	
+	private void notifyEvent(final SpelEvent e) {
+		this.spelEventListeners.forEach(l -> { l.onEvent(e); } );
+	}
 }

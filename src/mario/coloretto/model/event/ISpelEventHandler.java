@@ -1,4 +1,7 @@
-package mario.coloretto.model;
+package mario.coloretto.model.event;
+
+import mario.coloretto.model.Spel;
+import mario.coloretto.model.Speler;
 
 /**
  *

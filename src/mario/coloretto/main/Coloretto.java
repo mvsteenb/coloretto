@@ -5,9 +5,11 @@ import java.util.Scanner;
 import mario.coloretto.commando.CommandoFactory;
 import mario.coloretto.commando.CommandoType;
 import mario.coloretto.commando.ICommando;
-import mario.coloretto.model.ISpelEventHandler;
 import mario.coloretto.model.Spel;
 import mario.coloretto.model.Speler;
+import mario.coloretto.model.event.ISpelEventListener;
+import mario.coloretto.model.event.SpelEvent;
+import mario.coloretto.model.event.StopSpelEvent;
 
 /**
  *
@@ -16,7 +18,7 @@ import mario.coloretto.model.Speler;
  *
  */
 
-public class Coloretto implements ISpelEventHandler {
+public class Coloretto implements ISpelEventListener {
 
 	/** scanner */
 	private Scanner scanner;
@@ -41,7 +43,8 @@ public class Coloretto implements ISpelEventHandler {
 		// maak een nieuw spel aan en voeg spelers toe...
 		// TIP : kan je ook doen via commands (maak een AddPlayerCommand) 
 		
-		Spel spel = new Spel(this);
+		Spel spel = new Spel();
+		spel.addEventListener(this);
 		
 		spel.addSpeler(new Speler("Manos"));
 		spel.addSpeler(new Speler("Phoebe"));
@@ -74,17 +77,19 @@ public class Coloretto implements ISpelEventHandler {
 	}
 	
 	@Override
-	public void speelBeurt(final Spel spel, final Speler speler) {
-		ICommando commando = leesCommando(spel, speler, CommandoType.SPELBEURT_COMMANDOS);
-		if (commando != null) {
-			commando.voerCommandoUit();
+	public void onEvent(final SpelEvent event) {
+		final CommandoType[] toegelatenCommandos = event.getAllowedCommands();
+		
+		if (event instanceof StopSpelEvent) {
+			if (scanner != null) {
+				scanner.close();
+			}
 		}
-	}
-	
-	@Override
-	public void stopSpel(Spel spel) {
-		if (scanner != null) {
-			scanner.close();
+		else {
+			ICommando commando = leesCommando(event.getSpel(), event.getSpeler(), toegelatenCommandos);
+			if (commando != null) {
+				commando.voerCommandoUit();
+			}
 		}
 	}
 	
